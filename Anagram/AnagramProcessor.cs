@@ -18,27 +18,22 @@ namespace Anagram
         {
             var allAnagrams = GetAllAnagrams(lines);
 
+            if (!allAnagrams.Any())
+                return new List<string>();
+
             return allAnagrams.OrderByDescending(p => p.Count).First();
         }
 
         public List<string> GetLongestAnagrams(List<string> lines)
         {
-            var allAnagrams = GetAllAnagrams(lines);
-            var orderedWords = allAnagrams.OrderByDescending(p => p[0].Length).ToList();
-            var wordLength = orderedWords.First()[0].Length;
-            var result = new List<string>();
+            var allAnagrams = new List<string>();
+            GetAllAnagrams(lines).ForEach(p => allAnagrams.AddRange(p));
 
-            for(int q = 0; q < orderedWords.Count(); q++)
-            {
-                if(orderedWords[q].First().Length == wordLength)
-                {
-                    result.Add(orderedWords[q].First());
-                }
-                else
-                {
-                    return result;
-                }
-            }
+            if (!allAnagrams.Any())
+                return new List<string>();
+
+            var wordLength = allAnagrams.OrderByDescending(p => p.Length).First().Length;
+            var result = allAnagrams.Where(p => p.Length == wordLength).ToList();
 
             return result;
         }

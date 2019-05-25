@@ -43,5 +43,41 @@ namespace ClassLibrary1
 
             Assert.That(result.Count, Is.EqualTo(3));
         }
+
+        [Test]
+        public void GetAllAnagrams_EmptyList_ShouldReturnEmptyList()
+        {
+            var anagramProcessor = new AnagramProcessor();
+            var lines = new List<string>();
+
+            var result = anagramProcessor.GetAllAnagrams(lines);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Count, Is.EqualTo(0));
+            });
+        }
+
+        [Test]
+        public void GetBiggestSetOfAnagrams_EmptyList_ShouldReturnEmptyList()
+        {
+            var anagramProcessor = new AnagramProcessor();
+            var lines = new List<string>();
+
+            var result = anagramProcessor.GetBiggestSetOfAnagrams(lines);
+
+            Assert.That(result.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void GetLongestAnagrams_EmptyList_ShouldReturnEmptyList()
+        {
+            var anagramProcessor = new AnagramProcessor();
+            var lines = new List<string>();
+
+            var result = anagramProcessor.GetBiggestSetOfAnagrams(lines);
+
+            Assert.That(result.Count, Is.EqualTo(0));
+        }
     }
 }
